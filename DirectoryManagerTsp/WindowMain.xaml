@@ -1,0 +1,84 @@
+﻿<Window x:Class="DirectoryManagerTsp.WindowMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:category="clr-namespace:Shared.Category"
+        mc:Ignorable="d"
+        Title="ファイル管理" Height="700" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="buttonLogin" Content="ログイン" Grid.Column="7" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonLogin_Click"/>
+        <Button x:Name="buttonLogout" Content="ログアウト" Grid.Column="8" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonLogout_Click"/>
+        <Label Content="機種名" Grid.Row="1" VerticalAlignment="Center"/>
+        <ComboBox x:Name="comboboxModel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                  DisplayMemberPath="Title"
+                  SelectedValuePath="Value"
+                  SelectionChanged="comboboxModel_SelectionChanged"/>
+        <Button x:Name="buttonModelSelect" Content="一覧選択" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="5,0" Height="45" IsEnabled="False"/>
+        <Button x:Name="buttonModelCreate" Content="作成" Grid.Row="1" Grid.Column="7" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonModelCreate_Click"/>
+        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="4"  Margin="10, 2, 2, 2">
+            <Label x:Name="labelModelComment" Content="">
+                <Label.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+                </Label.Background>
+            </Label>
+        </ScrollViewer>
+        <Button x:Name="buttonModelComment" Content="概要を修正" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Margin="5,0" Height="45" Click="buttonModelComment_Click"/>
+        <Label Content="装置名" Grid.Row="3" VerticalAlignment="Center"/>
+        <ComboBox x:Name="comboboxEquipment" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                  DisplayMemberPath="Title"
+                  SelectedValuePath="Value"
+                  SelectionChanged="comboboxEquipment_SelectionChanged"/>
+        <Button x:Name="buttonEquipmentSelect" Content="一覧選択" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Height="45" Margin="5,0" IsEnabled="False"/>
+        <Button x:Name="buttonEquipmentRevision" Grid.Row="3" Grid.Column="7" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonEquipmentRevision_Click">
+            <TextBlock x:Name="buttonEquipmentRevisionText" Text="リビジョンを&#10;アップ" TextAlignment="Center" TextWrapping="Wrap" />
+        </Button>
+        <Button x:Name="buttonEquipmentDerived" Content="派生を作成" Grid.Row="3" Grid.Column="8" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonEquipmentDerived_Click"/>
+        <Button x:Name="buttonEquipmentInformation" Content="対象を設定" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonEquipmentInformation_Click"/>
+        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="4" Margin="10, 2, 2, 2">
+            <Label x:Name="labelEquipmentComment" Content="">
+                <Label.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+                </Label.Background>
+            </Label>
+        </ScrollViewer>
+        <Button x:Name="buttonEquipmentComment" Content="概要を修正" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonEquipmentComment_Click"/>
+        <Label Content="工番" VerticalAlignment="Center" Grid.Row="5"/>
+        <ComboBox x:Name="comboboxProcess" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                  DisplayMemberPath="Title"
+                  SelectedValuePath="Value"
+                  SelectionChanged="comboboxProcess_SelectionChanged"/>
+        <Button x:Name="buttonProcessSelect" Content="一覧選択" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Height="45" Margin="5,0" IsEnabled="False"/>
+        <Button x:Name="buttonProcessCreate" Content="作成" Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonProcessCreate_Click"/>
+        <ScrollViewer Grid.Row="6" Grid.ColumnSpan="4" Margin="10, 2, 2, 2">
+            <Label x:Name="labelProcessComment" Content="">
+                <Label.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+                </Label.Background>
+            </Label>
+        </ScrollViewer>
+        <Button x:Name="buttonProcessComment" Content="概要を修正" Grid.Row="6" Grid.Column="4" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonProcessComment_Click"/>
+        <category:ControlDirectoryManager x:Name="controlDirectoryManager" Grid.Row="7" Grid.ColumnSpan="10"/>
+    </Grid>
+</Window>

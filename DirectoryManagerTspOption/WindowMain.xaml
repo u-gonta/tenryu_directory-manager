@@ -1,0 +1,48 @@
+﻿<Window x:Class="DirectoryManagerTspOption.WindowMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:category="clr-namespace:Shared.Category"
+        mc:Ignorable="d"
+        Title="ファイル管理(オプション)" Height="500" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="buttonLogin" Content="ログイン" Grid.Column="7" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonLogin_Click"/>
+        <Button x:Name="buttonLogout" Content="ログアウト" Grid.Column="8" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonLogout_Click"/>
+        <Label Content="装置番号" Grid.Row="1" VerticalAlignment="Center"/>
+        <ComboBox x:Name="comboboxOption" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                  DisplayMemberPath="Title"
+                  SelectedValuePath="Value"
+                  SelectionChanged="comboboxOption_SelectionChanged"/>
+        <Button x:Name="buttonOptionSelect" Content="一覧選択" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="5,0" Height="45" IsEnabled="False"/>
+        <Button x:Name="buttonOptionInformation" Content="対象を設定" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonOptionInformation_Click"/>
+        <Button x:Name="buttonOptionRevision" Grid.Row="1" Grid.Column="7" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonOptionRevision_Click">
+            <TextBlock x:Name="buttonOptionRevisionText" Text="リビジョンを&#10;アップ" TextAlignment="Center" TextWrapping="Wrap" />
+        </Button>
+        <Button x:Name="buttonOptionDerived" Content="派生を作成" Grid.Row="1" Grid.Column="8" VerticalAlignment="Center" Height="45" Margin="5,0" Click="buttonOptionDerived_Click"/>
+        <Label x:Name="labelOptionComment" Content="" Grid.Row="2" Grid.ColumnSpan="4" Margin="10, 2, 2, 2">
+            <Label.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+            </Label.Background>
+        </Label>
+        <Button x:Name="buttonOptionComment" Content="概要を修正" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Margin="5,0" Height="45" Click="buttonOptionComment_Click"/>
+        <category:ControlDirectoryManager x:Name="controlDirectoryManager" Grid.Row="3" Grid.ColumnSpan="10"/>        
+    </Grid>
+</Window>

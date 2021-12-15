@@ -1,0 +1,54 @@
+﻿<Window x:Class="DirectoryManagerTsp.Generation.Equipment.WindowComment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="装置の概要を更新" Height="400" Width="600" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="機種名" VerticalAlignment="Center"/>
+        <Label Name="labelModel" Content="TSP-" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+            <Label.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuColorKey}}"/>
+            </Label.Background>
+        </Label>
+        <ScrollViewer Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Margin="10, 2, 2, 2">
+            <Label x:Name="labelModelComment" Content="">
+                <Label.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuColorKey}}"/>
+                </Label.Background>
+            </Label>
+        </ScrollViewer>
+        <Label Content="装置番号" Grid.Row="2" VerticalAlignment="Center"/>
+        <Label Name="labelEquipment" Content="TS" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+            <Label.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+            </Label.Background>
+        </Label>
+        <Label x:Name="labelDerivationEquipment" Content="" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="10, 2, 2, 2">
+            <Label.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+            </Label.Background>
+        </Label>
+        <Label Content="概要" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Name="textBoxComment" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" BorderThickness="2" TextWrapping="Wrap" AcceptsReturn="True" />
+        <Button Name="buttonUpdate" Content="更新" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="buttonUpdate_Click"/>
+    </Grid>
+</Window>
