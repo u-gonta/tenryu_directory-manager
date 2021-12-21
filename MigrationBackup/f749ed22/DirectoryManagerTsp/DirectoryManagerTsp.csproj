@@ -4,16 +4,31 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13C2B42E-93BD-47C4-B234-C5F9DBD35AB7}</ProjectGuid>
+    <ProjectGuid>{03A83E81-700C-403B-97A5-967CF84439C3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DirectoryManagerTspOption</RootNamespace>
-    <AssemblyName>TSPディレクトリ管理%28オプション%29</AssemblyName>
+    <RootNamespace>DirectoryManagerTsp</RootNamespace>
+    <AssemblyName>TSPディレクトリ管理</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,14 +52,24 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>DirectoryManagerTspOption.App</StartupObject>
+    <StartupObject>DirectoryManagerTsp.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\IconExe.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CustomMarshalers" />
+    <Reference Include="Microsoft.Identity.Client, Version=4.37.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Identity.Client.4.37.0\lib\net461\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.4.0, Culture=neutral, PublicKeyToken=8985beaab7ea3f04, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft-WindowsAPICodePack-Core.1.1.4\lib\net472\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.4.0, Culture=neutral, PublicKeyToken=8985beaab7ea3f04, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft-WindowsAPICodePack-Shell.1.1.4\lib\net472\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
@@ -69,39 +94,54 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ComboboxItem\Option\ClassVariation.cs" />
-    <Compile Include="Generation\ClassManager.cs" />
-    <Compile Include="ComboboxItem\Option\ClassCategory.cs" />
-    <Compile Include="Generation\Option\WindowComment.xaml.cs">
+    <Compile Include="ComboboxItem\ClassProcess.cs" />
+    <Compile Include="ComboboxItem\Equipment\ClassNumber.cs" />
+    <Compile Include="Generation\Equipment\WindowComment.xaml.cs">
       <DependentUpon>WindowComment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Generation\Option\WindowDerived.xaml.cs">
+    <Compile Include="Generation\Model\WindowComment.xaml.cs">
+      <DependentUpon>WindowComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Generation\Processs\WindowComment.xaml.cs">
+      <DependentUpon>WindowComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Generation\Equipment\WindowDerived.xaml.cs">
       <DependentUpon>WindowDerived.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Generation\Option\WindowInformation.xaml.cs">
-      <DependentUpon>WindowInformation.xaml</DependentUpon>
+    <Compile Include="Generation\Processs\WindowCreate.xaml.cs">
+      <DependentUpon>WindowCreate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Generation\Option\WindowRevisionUp.xaml.cs">
+    <Compile Include="Generation\WindowModel.xaml.cs">
+      <DependentUpon>WindowModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Generation\Equipment\WindowRevisionUp.xaml.cs">
       <DependentUpon>WindowRevisionUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ComboboxItem\ClassOption.cs" />
-    <Compile Include="Setting\ClassIntegration.cs" />
-    <Compile Include="Setting\ClassIntegrationManager.cs" />
-    <Compile Include="Setting\ClassLocal.cs" />
-    <Compile Include="Setting\ClassLocalManager.cs" />
-    <Page Include="Generation\Option\WindowComment.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Generation\Option\WindowDerived.xaml">
+    <Page Include="Generation\Equipment\WindowComment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Generation\Option\WindowInformation.xaml">
+    <Page Include="Generation\Model\WindowComment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Generation\Processs\WindowComment.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Generation\Option\WindowRevisionUp.xaml">
+    <Page Include="Generation\Equipment\WindowDerived.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Generation\Processs\WindowCreate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Generation\WindowModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Generation\WindowInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,12 +153,29 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ComboboxItem\ClassEquipment.cs" />
+    <Compile Include="ComboboxItem\ClassModel.cs" />
+    <Compile Include="Setting\ClassLocal.cs" />
+    <Compile Include="Setting\ClassLocalManager.cs" />
     <Compile Include="Status\ClassHierarchy.cs" />
     <Compile Include="Status\ClassManager.cs" />
+    <Compile Include="Tool\ClassEquipment.cs" />
+    <Compile Include="Generation\ClassDirectory.cs" />
+    <Compile Include="Generation\ClassEquipment.cs" />
+    <Compile Include="Generation\ClassManager.cs" />
+    <Compile Include="Setting\ClassIntegrationManager.cs" />
+    <Compile Include="Setting\ClassIntegration.cs" />
+    <Compile Include="Generation\WindowInformation.xaml.cs">
+      <DependentUpon>WindowInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Generation\Equipment\WindowRevisionUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -138,6 +195,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,9 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\IconExe.ico" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
@@ -161,13 +216,21 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell">
-      <Version>1.1.4</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.37.0</Version>
-    </PackageReference>
+    <None Include="Resources\IconExe.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 および x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
