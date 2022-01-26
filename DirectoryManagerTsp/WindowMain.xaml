@@ -45,7 +45,7 @@
             </Label>
         </ScrollViewer>
         <Button x:Name="buttonModelComment" Content="概要を修正" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Margin="5,0" Height="45" Click="buttonModelComment_Click"/>
-        <Label Content="装置名" Grid.Row="3" VerticalAlignment="Center"/>
+        <Label Content="装置番号" Grid.Row="3" VerticalAlignment="Center"/>
         <ComboBox x:Name="comboboxEquipment" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"
                   DisplayMemberPath="Title"
                   SelectedValuePath="Value"

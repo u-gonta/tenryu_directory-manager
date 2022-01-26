@@ -336,6 +336,9 @@ namespace DirectoryManagerTsp
                     // ディレクトリ選択時の通知を登録
                     controlDirectoryTree.DirectorySelected += this.OnSelected;
 
+                    // 機種名を更新
+                    labelModel.Content = _model;
+
                     // 部署名のコンボボックスを更新
                     UpdateDepartmentCombobox();
                 }

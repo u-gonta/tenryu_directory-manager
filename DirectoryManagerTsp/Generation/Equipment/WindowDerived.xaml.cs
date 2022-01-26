@@ -191,7 +191,7 @@ namespace DirectoryManagerTsp
                         if (comboboxItemEquipmentNumber == null)
                         {
                             // コンボボックスの項目が未選択
-                            throw new Exception("装置の番号が選択されていません。");
+                            throw new Exception("装置番号が選択されていません。");
                         }
 
                         var settingManager = Setting.ClassIntegrationManager.Instance;
